@@ -917,6 +917,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 701717964}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &782024873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2450132571589030594, guid: 11a32b23c143d4614923d95b66cfc012,
+    type: 3}
+  m_PrefabInstance: {fileID: 5635742520985378454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &853989883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2702,16 +2714,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2450132571589030594, guid: 11a32b23c143d4614923d95b66cfc012,
-        type: 3}
-      propertyPath: m_MaxValue
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450132571589030594, guid: 11a32b23c143d4614923d95b66cfc012,
-        type: 3}
-      propertyPath: m_Value
-      value: 75
-      objectReference: {fileID: 0}
     - target: {fileID: 6401339279875750583, guid: 11a32b23c143d4614923d95b66cfc012,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2818,5 +2820,15 @@ PrefabInstance:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 5635742520985378455}
+    - target: {fileID: 2375604420847037653, guid: cb37e5bf3f036484bb4a49cb16e33ab6,
+        type: 3}
+      propertyPath: staminaSlider
+      value: 
+      objectReference: {fileID: 782024873}
+    - target: {fileID: 2375604420847037653, guid: cb37e5bf3f036484bb4a49cb16e33ab6,
+        type: 3}
+      propertyPath: regeneration
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb37e5bf3f036484bb4a49cb16e33ab6, type: 3}
