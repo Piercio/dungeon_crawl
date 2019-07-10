@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour {
 
     private PlayerMovement playerMovement;		// reference to PlayerMove script
+    private PlayerStamina playerStamina;
 
 	// Use this for initialization
 	void Awake () {
         playerMovement = GetComponent<PlayerMovement>();
+        playerStamina = GetComponent<PlayerStamina>();
 	}
 	
 	// Update is called once per frame
@@ -27,11 +29,13 @@ public class PlayerInput : MonoBehaviour {
         int horizontal = 0;
         int vertical = 0;
         int turning = 0;
+        int attack = 0;
 
 		// cache movement and turning values based on input axis
         horizontal = (int)(Input.GetAxisRaw("Horizontal"));
         vertical = (int)(Input.GetAxisRaw("Vertical"));
         turning = (int)(Input.GetAxisRaw("Turning"));
+        attack = (int)(Input.GetAxisRaw("Attack"));
 
 		// limit movement and turning values so that only one value is something than zero
         if (horizontal != 0) {
@@ -40,6 +44,9 @@ public class PlayerInput : MonoBehaviour {
             playerMovement.MovePlayer(0, vertical, 0);
         } else if (turning != 0) {
             playerMovement.MovePlayer(0, 0, turning);
+        } else if (attack != 0 && playerStamina.CanAttack()) {
+            Debug.Log(attack);
+            playerStamina.UseStamina(15);
         }
     }
 }

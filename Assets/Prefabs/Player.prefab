@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 8739265448208756501}
   - component: {fileID: 8739265448208756506}
   - component: {fileID: 6360097212307479288}
+  - component: {fileID: 2375604420847037653}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -207,6 +208,21 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
+--- !u!114 &2375604420847037653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739265448208756504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2f9bcd4f3804118aa58e15939bb787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingStamina: 75
+  currentStamina: 0
+  staminaSlider: {fileID: 0}
 --- !u!1 &8739265448313525472
 GameObject:
   m_ObjectHideFlags: 0
