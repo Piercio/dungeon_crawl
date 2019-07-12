@@ -10,7 +10,7 @@ public class PlayerStamina : MonoBehaviour {
 
     private bool isAttacking = false;
     private float attackDuration;
-    private float attackSpeed = 1.0f;
+    private float attackSpeed = 0.6f;
 
     public float regeneration = 20.0f;
 

@@ -5,15 +5,19 @@ using UnityEngine;
 // class to manage all player keyboard input
 public class PlayerInput : MonoBehaviour {
 
-    private PlayerMovement playerMovement;		// reference to PlayerMove script
+    private PlayerMovement playerMovement;
     private PlayerStamina playerStamina;
+    public GameObject EquippedWeapon;
+
+    private IWeapon equippedWeapon;
 
 	// Use this for initialization
 	void Awake () {
         playerMovement = GetComponent<PlayerMovement>();
         playerStamina = GetComponent<PlayerStamina>();
+        equippedWeapon = EquippedWeapon.GetComponent<IWeapon>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
         if (!playerMovement.IsMoving()) {
@@ -46,7 +50,8 @@ public class PlayerInput : MonoBehaviour {
             playerMovement.MovePlayer(0, 0, turning);
         } else if (attack != 0 && playerStamina.CanAttack()) {
             Debug.Log(attack);
-            playerStamina.UseStamina(15);
+            equippedWeapon.PerformAttack();
+            playerStamina.UseStamina(27);
         }
     }
 }

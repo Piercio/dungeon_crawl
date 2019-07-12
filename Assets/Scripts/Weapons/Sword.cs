@@ -1,0 +1,22 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Sword: MonoBehaviour, IWeapon {
+   
+	private Animator animator;
+	public int CurrentDamage { get; set; }
+
+	void Start() {
+		animator = GetComponent<Animator>();
+	}
+
+	public void PerformAttack() {
+		Debug.Log(this.name + " attack!");
+		animator.SetTrigger("BaseAttack");
+    }
+
+    public void PerformSpecialAttack() {
+    	Debug.Log(this.name + " SPECIAL attack!");
+    }
+}
