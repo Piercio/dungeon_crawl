@@ -43,8 +43,8 @@ Light:
   m_Type: 0
   m_Color: {r: 0.972549, g: 0.6654654, b: 0.25098044, a: 1}
   m_Intensity: 0.7
-  m_Range: 10
-  m_SpotAngle: 93.5
+  m_Range: 5
+  m_SpotAngle: 88.525894
   m_InnerSpotAngle: 16.3
   m_CookieSize: 10
   m_Shadows:
@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 8739265448208756506}
   - component: {fileID: 6360097212307479288}
   - component: {fileID: 2375604420847037653}
+  - component: {fileID: 5943897766332031740}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -171,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c90d847355b84db5ba0cc141857b7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EquippedWeapon: {fileID: 8739265447393999819}
 --- !u!114 &8739265448208756506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   blockLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!114 &6360097212307479288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +227,18 @@ MonoBehaviour:
   currentStamina: 0
   staminaSlider: {fileID: 0}
   regeneration: 20
+--- !u!114 &5943897766332031740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739265448208756504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96685d9e4ac334db282377cc8b0e2cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8739265448313525472
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,11 +329,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8739265448208756507}
     m_Modifications:
-    - target: {fileID: 2203774821250606666, guid: cbab215bfaa35408fa71f763c310fd69,
-        type: 3}
-      propertyPath: m_Name
-      value: Sword
-      objectReference: {fileID: 0}
     - target: {fileID: 2203774821250125672, guid: cbab215bfaa35408fa71f763c310fd69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -375,8 +384,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2203774821250606666, guid: cbab215bfaa35408fa71f763c310fd69,
+        type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203774821252589358, guid: cbab215bfaa35408fa71f763c310fd69,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbab215bfaa35408fa71f763c310fd69, type: 3}
+--- !u!1 &8739265447393999819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2203774821250606666, guid: cbab215bfaa35408fa71f763c310fd69,
+    type: 3}
+  m_PrefabInstance: {fileID: 7484272404430331265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8739265447394038505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2203774821250125672, guid: cbab215bfaa35408fa71f763c310fd69,
