@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 public interface IWeapon {
-    int CurrentDamage { get; set; }
+    int currentDamage { get; set; }
 
     void PerformAttack();
     

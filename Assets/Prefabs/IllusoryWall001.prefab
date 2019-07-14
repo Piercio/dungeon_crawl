@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4693930354474205298}
   - component: {fileID: 4693930354474205299}
   - component: {fileID: 4693930354474205296}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IllusoryWall001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ MeshCollider:
   m_GameObject: {fileID: 4693930354474205297}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14

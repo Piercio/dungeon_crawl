@@ -14,6 +14,7 @@ public class CharacterStats: MonoBehaviour {
 	public BaseCharacterClass CharacterClass { get; set; }
 
 	void Awake() {
+		CharacterClass = new Soldier();
 		this.Strength = this.CharacterClass.GetStrength();
 		this.Dexterity = this.CharacterClass.GetDexterity();
 		this.Vitality =  this.CharacterClass.GetVitality();

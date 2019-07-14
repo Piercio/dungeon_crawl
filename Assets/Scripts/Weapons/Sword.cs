@@ -5,15 +5,15 @@ using UnityEngine;
 public class Sword: MonoBehaviour, IWeapon {
    
 	private Animator animator;
-	public int CurrentDamage { get; set; }
+	public int currentDamage { get; set; }
 
 	void Start() {
 		animator = GetComponent<Animator>();
 	}
 
 	public void PerformAttack() {
-		Debug.Log(this.name + " attack!");
 		animator.SetTrigger("BaseAttack");
+		Debug.Log("Damage: " + currentDamage);
     }
 
     public void PerformSpecialAttack() {
