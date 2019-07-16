@@ -10,7 +10,7 @@ public class PlayerStamina : MonoBehaviour {
 
     private bool isAttacking = false;
     private float attackDuration;
-    private float attackSpeed = 1.0f;
+    private float attackSpeed = 1.0f; // TODO: This must be provided by weapon equipped
 
     public float regeneration = 17.0f;
 

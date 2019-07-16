@@ -58,4 +58,9 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Unarmed attack!!"); //TODO create an Unarmed IWeapon
         }
     }
+
+    public void OnDrawGizmos() {
+        Gizmos.color = new Color32(0, 0, 180, 170);
+        Gizmos.DrawCube(transform.position, new Vector3(0.8f, 1.0f, 0.6f));
+    }
 }

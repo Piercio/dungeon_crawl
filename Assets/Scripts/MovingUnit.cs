@@ -43,6 +43,11 @@ public abstract class MovingUnit : MonoBehaviour {
 
         if (Physics.Linecast(start, end, out hit, blockLayer)) {
         	// if a linecast hits something, cannot move (obstacle)
+            Interactable interactable = hit.transform.GetComponent<Interactable>();
+            Debug.Log(interactable);
+            if (interactable != null) {
+                interactable.Interact(transform);  
+            }
             canMove = false;
         } else {
         	// otherwise movement is possible: call ienumerator Movement
