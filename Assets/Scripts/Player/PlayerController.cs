@@ -8,9 +8,8 @@ public class PlayerController : MonoBehaviour {
     private PlayerMovement playerMovement;
     private PlayerStamina playerStamina;
     private CharacterStats characterStats;
-    public GameObject rightHand;
-    public GameObject rightHandSlot;
-    private IWeapon rightHandWeapon;
+
+    public IWeapon equipedWeapon { get; set; }
 
 	// Use this for initialization
 	void Awake () {
@@ -18,33 +17,6 @@ public class PlayerController : MonoBehaviour {
         playerStamina = GetComponent<PlayerStamina>();
         characterStats = GetComponent<CharacterStats>();
 	}
-
-    public void EquipWeapon(Item weaponToEquip) {
-        Debug.Log("Equiping weapon!");
-        if (rightHandSlot != null) {
-            // Destroy(rightHand.transform.GetChild(0).gameObject);
-            Destroy(rightHandSlot);
-            Debug.Log("Removed item: " + rightHandSlot);
-        }
-
-        rightHandSlot = (GameObject) Instantiate(
-            Resources.Load<GameObject>("Weapons/" + weaponToEquip.slug),
-            rightHand.transform.position,
-            rightHand.transform.rotation
-        );
-        rightHandSlot.transform.SetParent(rightHand.transform);
-        Debug.Log(rightHandSlot);
-        
-        rightHandWeapon = rightHandSlot.GetComponent<IWeapon>();
-        rightHandWeapon.currentDamage = weaponToEquip.damage;
-        Debug.Log(rightHandWeapon);
-    }
-
-    public void PerformWeaponAttack() {
-        Debug.Log("attack action");
-        rightHandWeapon.PerformAttack();
-        playerStamina.UseStamina(27);
-    }
 
 	void Update () {
         if (!playerMovement.IsMoving()) {
@@ -75,6 +47,15 @@ public class PlayerController : MonoBehaviour {
             playerMovement.MovePlayer(0, 0, turning);
         } else if (attack != 0 && playerStamina.CanAttack()) {
            this.PerformWeaponAttack();
+        }
+    }
+
+    public void PerformWeaponAttack() {
+        if (equipedWeapon != null) {
+            int staminaSpent = equipedWeapon.PerformLightAttack(1, 2, 3);
+            playerStamina.UseStamina(staminaSpent);
+        } else {
+            Debug.Log("Unarmed attack!!"); //TODO create an Unarmed IWeapon
         }
     }
 }

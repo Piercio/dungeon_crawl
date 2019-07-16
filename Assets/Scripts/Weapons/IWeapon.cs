@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
 public interface IWeapon {
-    int currentDamage { get; set; }
 
-    void PerformAttack();
+	void FillStatsFromItem(Item weaponItem);
+
+    int PerformLightAttack(int strength, int dexterity, int inteligence);
     
-    void PerformSpecialAttack();
+    int PerformHeavyAttack(int strength, int dexterity, int inteligence);
 }

@@ -4,15 +4,15 @@ using System.Collections;
 
 public class PlayerStamina : MonoBehaviour {
 
-    public int startingStamina = 75;                            // The amount of health the player starts the game with.
-    public float currentStamina;                                   // The current health the player has.
-    public Slider staminaSlider;                                 // Reference to the UI's health bar.
+    public int startingStamina = 75;
+    public float currentStamina;
+    public Slider staminaSlider;
 
     private bool isAttacking = false;
     private float attackDuration;
-    private float attackSpeed = 0.6f;
+    private float attackSpeed = 1.0f;
 
-    public float regeneration = 20.0f;
+    public float regeneration = 17.0f;
 
     // Start is called before the first frame update
     void Awake() {
@@ -39,7 +39,7 @@ public class PlayerStamina : MonoBehaviour {
 	}
 
 	public bool CanAttack() {
-		return !isAttacking && currentStamina > 0;
+		return !isAttacking && currentStamina > 27;
 	}
 
 	 void Regenerate() {
