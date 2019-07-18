@@ -20,11 +20,11 @@ public abstract class MovingUnit : MonoBehaviour {
     }
 
 	// function to start moving
-    protected virtual void StartMove (Vector3 newDir) {
+    protected virtual void StartMove (Vector3 newPos, bool isForward) {
         if (!isMoving) {
 			// make a RaycastHit and call function Move from this script
             RaycastHit hit;
-            Move(newDir, out hit);
+            Move(newPos, out hit, isForward);
         }
     }
 
@@ -36,28 +36,28 @@ public abstract class MovingUnit : MonoBehaviour {
     }
 
 	// function to check if movement is possible
-    protected virtual void Move (Vector3 newDir, out RaycastHit hit) {
+    protected virtual void Move (Vector3 newPos, out RaycastHit hit, bool isForward) {
 		// define start and end positions
         Vector3 start = transform.position;
-        Vector3 end = newDir;
+        Vector3 end = newPos;
+        Debug.Log(isForward);
 
         if (Physics.Linecast(start, end, out hit, blockLayer)) {
         	// if a linecast hits something, cannot move (obstacle)
             Interactable interactable = hit.transform.GetComponent<Interactable>();
-            Debug.Log(interactable);
-            if (interactable != null) {
+            if (interactable != null && isForward) {
                 interactable.Interact(transform);  
             }
             canMove = false;
         } else {
         	// otherwise movement is possible: call ienumerator Movement
             canMove = true;
-            StartCoroutine(Movement(newDir));
+            StartCoroutine(Movement(newPos));
         }
     }
 
 	// function to do actual movement from grid to grid
-    protected IEnumerator Movement (Vector3 end) {
+    public IEnumerator Movement (Vector3 end) {
 		// unit is moving and define the distance from unit to end position
         isMoving = true;
         float remainDist = (transform.position - end).sqrMagnitude;
@@ -104,5 +104,10 @@ public abstract class MovingUnit : MonoBehaviour {
 	// function to get canMove value
     public bool CanMove () {
         return canMove;
+    }
+
+    public void ForceMovementForward(int moves) {
+        Vector3 newDir = transform.position + transform.forward * moves;
+        StartCoroutine(Movement(newDir));
     }
 }

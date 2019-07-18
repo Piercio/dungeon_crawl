@@ -13,15 +13,17 @@ public class Altar : Interactable {
 	}
 
 	public override void Interact(Transform transform) {
-		DialogueSystem.OnDialogueFinish callback = StartPraying;
-		DialogueSystem.Instance.AddNewDialogue(dialogueLines, callback);
+		DialogueSystem.Instance.AddNewDialogue(
+			dialogueLines,
+			delegate() { StartPraying(transform); }
+		);
 	}
 
-	public void StartPraying() {
+	public void StartPraying(Transform transform) {
 		if (firstTime) {
 			dialogueLines.RemoveAt(1);
 			firstTime = false;
 		}
-		Debug.Log("Player is praying!");
+		Debug.Log("Player is praying! " + transform);
 	}
 }
