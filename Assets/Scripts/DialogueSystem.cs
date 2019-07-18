@@ -29,10 +29,12 @@ public class DialogueSystem : MonoBehaviour {
     }
 
     public void AddNewDialogue(List<string> lines, OnDialogueFinish callback) {
-    	dialogueIndex = 0;
-    	dialogueLines = lines;
-		finishCallback = callback;
-        CreateDialogue();
+    	if (!dialoguePanel.activeSelf) {
+	    	dialogueIndex = 0;
+	    	dialogueLines = lines;
+			finishCallback = callback;
+	        CreateDialogue();
+	    }
     }
 
     void CreateDialogue() {
@@ -45,8 +47,12 @@ public class DialogueSystem : MonoBehaviour {
     	if (dialogueIndex < dialogueLines.Count) {
     		dialogueText.text = dialogueLines[dialogueIndex];
     	} else {
-    		dialoguePanel.SetActive(false);
+    		CancelDialogue();
     		finishCallback();
     	}
+    }
+
+    public void CancelDialogue() {
+    	dialoguePanel.SetActive(false);
     }
 }
