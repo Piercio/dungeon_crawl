@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class WallOfFog : Interactable {
 
-	List<string> dialogueLines = new List<string>(2);
+	List<string> dialogueLines = new List<string>(1);
 
 	void Awake() {
-		dialogueLines.Add("Cross the fog wall?");
+		this.dialogueLines.Add("Cross the fog wall?");
+	}
+
+	public override bool CanInteract(Transform playerTransform) {
+		return this.IsFacing(playerTransform);
 	}
 
 	public override void Interact(Transform playerTransform) {
-		if (this.IsFacing(playerTransform)) {
-			DialogueSystem.Instance.AddNewDialogue(
-				dialogueLines,
-				delegate () { CrossFogWall(playerTransform); }
-			);
-		}
+		DialogueSystem.Instance.AddNewDialogue(
+			dialogueLines,
+			delegate () { this.CrossFogWall(playerTransform); }
+		);
 	}
 
 	public void CrossFogWall(Transform playerTransform) {
 		PlayerMovement playerMovement = playerTransform.GetComponent<PlayerMovement>();
 		playerMovement.ForceMovementForward(2);
-
-		Debug.Log("Player crosses the wall of fog! ");
 	}
 
-	bool IsFacing(Transform playerTransform) {
-        return transform.forward == -playerTransform.forward;
+	private bool IsFacing(Transform playerTransform) {
+        return this.transform.forward == -playerTransform.forward;
     }
 
 }

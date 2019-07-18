@@ -12,44 +12,41 @@ public class Chest : Interactable {
 	bool isEmpty = false;
 
 	void Awake() {
-		animator = GetComponent<Animator>();
-		item = new Item(itemSlug);   // TODO: create Item by slug from db
+		this.animator = GetComponent<Animator>();
+		this.item = new Item(itemSlug);   // TODO: create Item by slug from db
+	}
+
+	public override bool CanInteract(Transform playerTransform) {
+		return !isEmpty;
 	}
 
 	public override void Interact(Transform playerTransform) {
-		if (isEmpty) {
-			return;
-		}		
+		if (this.storedItem == null) {
+			List<string> dialogueLines = new List<string>(1);
+			dialogueLines.Add("You found a " + item.slug);
 
-		List<string> dialogueLines = new List<string>(1);
+			this.Open();
 
-		if (storedItem == null) {
-			dialogueLines.Add("Open this chest?");
 			DialogueSystem.Instance.AddNewDialogue(
 				dialogueLines,
-				delegate() { Open(); }
-			);
-		} else {
-			dialogueLines.Add("Pickup " + item.slug + "?");
-			DialogueSystem.Instance.AddNewDialogue(
-				dialogueLines,
-				delegate() { Pickup(playerTransform); }
+				delegate() { this.Pickup(playerTransform); }
 			);
 		}
 	}
 
 	public void Open() {
-		animator.SetTrigger("OpenChest");
-		createItem();
+		this.animator.SetTrigger("OpenChest");
+		this.createItem();
 	}
 
-	void createItem(){
-		storedItem = (GameObject) Instantiate(Resources.Load<GameObject>(item.slug));
-        storedItem.transform.SetParent(this.transform);
+	private void createItem() {
+		this.storedItem = (GameObject) Instantiate(Resources.Load<GameObject>(this.item.slug));
+        this.storedItem.transform.SetParent(this.transform);
     }
 
     public void Pickup(Transform playerTransform) {
-    	InventoryController inventory = playerTransform.gameObject.GetComponent<InventoryController>();
+    	InventoryController inventory = playerTransform.GetComponent<InventoryController>();
     	inventory.AddToBackpack(storedItem);
+    	this.isEmpty = true;
     }
 }

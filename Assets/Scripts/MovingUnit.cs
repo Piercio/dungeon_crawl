@@ -44,9 +44,8 @@ public abstract class MovingUnit : MonoBehaviour {
 
         if (Physics.Linecast(start, end, out hit, blockLayer)) {
         	// if a linecast hits something, cannot move (obstacle)
-            Interactable interactable = hit.transform.GetComponent<Interactable>();
-            if (interactable != null && isForward) {
-                interactable.Interact(transform);  
+            if (isForward) {
+                VerifyInteraction(hit);
             }
             canMove = false;
         } else {
@@ -110,4 +109,12 @@ public abstract class MovingUnit : MonoBehaviour {
         Vector3 newDir = transform.position + transform.forward * moves;
         StartCoroutine(Movement(newDir));
     }
+
+    private void VerifyInteraction(RaycastHit hit) {
+        Interactable interactable = hit.transform.GetComponent<Interactable>();
+        if (interactable != null && interactable.CanInteract(hit.transform)) {
+            interactable.Interact(transform);  
+        }
+    }
+
 }
