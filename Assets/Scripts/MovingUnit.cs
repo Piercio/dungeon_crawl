@@ -40,18 +40,17 @@ public abstract class MovingUnit : MonoBehaviour {
 		// define start and end positions
         Vector3 start = transform.position;
         Vector3 end = newPos;
-        Debug.Log(isForward);
 
         if (Physics.Linecast(start, end, out hit, blockLayer)) {
         	// if a linecast hits something, cannot move (obstacle)
-            Interactable interactable = hit.transform.GetComponent<Interactable>();
-            if (interactable != null && isForward) {
-                interactable.Interact(transform);  
+            if (isForward) {
+                VerifyInteraction(hit);
             }
             canMove = false;
         } else {
         	// otherwise movement is possible: call ienumerator Movement
             canMove = true;
+            DialogueSystem.Instance.CancelDialogue();
             StartCoroutine(Movement(newPos));
         }
     }
@@ -110,4 +109,14 @@ public abstract class MovingUnit : MonoBehaviour {
         Vector3 newDir = transform.position + transform.forward * moves;
         StartCoroutine(Movement(newDir));
     }
+
+    private void VerifyInteraction(RaycastHit hit) {
+        isMoving = true;
+        Interactable interactable = hit.transform.GetComponent<Interactable>();
+        if (interactable != null && interactable.CanInteract(transform)) {
+            interactable.Interact(transform);
+        }
+        isMoving = false;
+    }
+
 }

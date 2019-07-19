@@ -16,46 +16,37 @@ public class InventoryController : MonoBehaviour {
 
 	public GameObject backPack;
 
-	Item sword;
-	Dictionary<Item, GameObject> items;
+	Dictionary<string, GameObject> items;
 
 
     // Start is called before the first frame update
     void Start() {
     	playerController = GetComponent<PlayerController>();
-    	sword = new Item("Sword");
-    	items = new Dictionary<Item, GameObject>();
+    	items = new Dictionary<string, GameObject>();
     }
 
     // Update is called once per frame
     void Update() {
     	GameObject item;
         if (Input.GetKeyDown(KeyCode.V)) {
-        	if (items.TryGetValue(sword, out item)) {
+        	if (items.TryGetValue("sword", out item)) {
         		this.ToggleEquipWeapon(item);
         	} else {
         		Debug.Log("No sword to equip!");
         	}
-        } else if (Input.GetKeyDown(KeyCode.C)) {
-        	if (!items.TryGetValue(sword, out item)) {
-        		this.CreateWeapon(sword);
-        	} else {
-        		this.DestroyWeapon(sword);
-        	}
         }
     }
 
-    public void CreateWeapon(Item weaponToCreate) {
-    	GameObject weapon = (GameObject) Instantiate(Resources.Load<GameObject>("Weapons/" + weaponToCreate.slug));
-        weapon.transform.SetParent(backPack.transform);
-        items.Add(weaponToCreate, weapon);
+    public void AddToBackpack(GameObject itemToStore) {
+        itemToStore.transform.SetParent(backPack.transform);
+        items.Add("sword", itemToStore);
 
-        Debug.Log("Creating weapon: " + weapon);
+        Debug.Log("Item added to the players backPack: " + itemToStore);
     }
 
     public void DestroyWeapon(Item weaponToDestroy) {
-    	Destroy(items[weaponToDestroy]);
-    	items.Remove(weaponToDestroy);
+    	Destroy(items["sword"]);
+    	items.Remove("sword");
 
     	Debug.Log("Sword destroyed!");
     }

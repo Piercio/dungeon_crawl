@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Interactable: MonoBehaviour {
 
-    public virtual void Interact(Transform transform) {
-		Debug.Log("Interated with " + transform);      
+	public virtual bool CanInteract(Transform otherTransform) {
+		return true;
+	}
+
+    public virtual void Interact(Transform otherTransform) {
+		Debug.Log("Interated with " + otherTransform);      
     }
-    
+
 }

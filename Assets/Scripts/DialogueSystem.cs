@@ -53,6 +53,8 @@ public class DialogueSystem : MonoBehaviour {
     }
 
     public void CancelDialogue() {
-    	dialoguePanel.SetActive(false);
+        if (dialoguePanel.activeSelf) {
+    	   dialoguePanel.SetActive(false);
+        }
     }
 }
