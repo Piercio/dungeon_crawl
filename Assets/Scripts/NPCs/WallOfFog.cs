@@ -10,24 +10,24 @@ public class WallOfFog : Interactable {
 		this.dialogueLines.Add("Cross the fog wall?");
 	}
 
-	public override bool CanInteract(Transform playerTransform) {
-		return this.IsFacing(playerTransform);
+	public override bool CanInteract(Transform otherTransform) {
+		return this.IsFacing(otherTransform);
 	}
 
-	public override void Interact(Transform playerTransform) {
+	public override void Interact(Transform otherTransform) {
 		DialogueSystem.Instance.AddNewDialogue(
 			dialogueLines,
-			delegate () { this.CrossFogWall(playerTransform); }
+			delegate () { this.CrossFogWall(otherTransform); }
 		);
 	}
 
-	public void CrossFogWall(Transform playerTransform) {
-		PlayerMovement playerMovement = playerTransform.GetComponent<PlayerMovement>();
+	public void CrossFogWall(Transform otherTransform) {
+		PlayerMovement playerMovement = otherTransform.GetComponent<PlayerMovement>();
 		playerMovement.ForceMovementForward(2);
 	}
 
-	private bool IsFacing(Transform playerTransform) {
-        return this.transform.forward == -playerTransform.forward;
+	private bool IsFacing(Transform otherTransform) {
+        return transform.forward == -otherTransform.forward;
     }
 
 }

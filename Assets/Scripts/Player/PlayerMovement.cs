@@ -6,7 +6,6 @@ public class PlayerMovement : MovingUnit {
 	
 	public void MovePlayer(int hor, int ver, int rot) {
 		if (enabled) {
-			DialogueSystem.Instance.CancelDialogue();
 			Vector3 endPos = Vector3.zero;
 
 			if (ver != 0) {
