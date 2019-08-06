@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterStats: MonoBehaviour {
-	public BaseStat Strength {get; set;}
-	public BaseStat Dexterity { get; set; }
-	public BaseStat Vitality { get; set; }
-	public BaseStat Endurance { get; set; }
-	public BaseStat Intelligence { get; set; }
-	public BaseStat Resistance { get; set; }
+	BaseStat Strength {get; set;}
+	BaseStat Dexterity { get; set; }
+	BaseStat Vitality { get; set; }
+	BaseStat Endurance { get; set; }
+	BaseStat Intelligence { get; set; }
+	BaseStat Resistance { get; set; }
 
 	public BaseCharacterClass CharacterClass { get; set; }
 
@@ -23,7 +23,4 @@ public class CharacterStats: MonoBehaviour {
 		this.Resistance = this.CharacterClass.GetResistance();
 	}
 
-	void Update() {
-		//pass 
-	}
 }

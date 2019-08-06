@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotatingItem : MonoBehaviour {
 
-	[Range(0, 100)]
+	[Range(0, 360)]
 	public int speed = 50;
 
     // Update is called once per frame

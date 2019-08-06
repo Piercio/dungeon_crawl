@@ -7,7 +7,6 @@ public class MovingWall : Interactable {
 	bool isOpen = false;
 	float moveTime = 3.6f;
     
-
 	public override bool CanInteract(Transform otherTransform) {
 		return !isOpen;
 	}
@@ -31,5 +30,6 @@ public class MovingWall : Interactable {
             remainDist = (transform.position - end).sqrMagnitude;
             yield return null;
         }
+        Destroy(this.gameObject);
     }
 }

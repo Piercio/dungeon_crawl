@@ -9,4 +9,15 @@ public class Item {
 	public Item(string slug) {
 		this.slug = slug;
 	}
+
+	// DamageStat{
+	// 	damageType { physical, fire, cold, acid, lightning, buildUp_}
+	// 	baseDamage { int }
+	// 	levelModifier { % gain on baseDamage per level }
+	// 	StatModifilers [{ 
+	// 		stat { BaseStat }
+	// 		levelModifier { % gain based on stat per level }
+	// 		classifier { E-A..S based on range of levelModifier}
+	// 	 }]
+	// }
 }

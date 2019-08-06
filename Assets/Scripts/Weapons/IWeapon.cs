@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public interface IWeapon {
 
-	void FillStatsFromItem(Item weaponItem);
-
-    int PerformLightAttack(int strength, int dexterity, int inteligence);
+    int PerformLightAttack(Transform playerTransform);
     
     int PerformHeavyAttack(int strength, int dexterity, int inteligence);
 }

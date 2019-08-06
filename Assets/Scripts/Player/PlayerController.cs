@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void PerformWeaponAttack() {
+    void PerformWeaponAttack() {
         if (equipedWeapon != null) {
-            int staminaSpent = equipedWeapon.PerformLightAttack(1, 2, 3);
+            int staminaSpent = equipedWeapon.PerformLightAttack(transform);
             playerStamina.UseStamina(staminaSpent);
         } else {
             Debug.Log("Unarmed attack!!"); //TODO create an Unarmed IWeapon
